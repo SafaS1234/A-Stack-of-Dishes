@@ -2,6 +2,8 @@
 #include <array>
 #include <string>
 
+const int MAX_SIZE = 10;
+
 using namespace std;
 
 class Dish {
@@ -21,60 +23,87 @@ class Dish {
       return this->description;
     }
 
-    // bool isFull() {
-    //     return (top == MAX_SIZE - 1);}
-
-    // void push(int element) {
-    //     if (!isFull()) {
-    //         top++;
-    //         arr[top] = element;
-    //         std::cout << "Pushed element: " << element << " onto the stack.\n";
-    //     } else {
-    //         std::cout << "Stack is full. Cannot push element " << element << ".\n";
-    //     }
-    //   }
 };
 
 
 class DishStack
 {
   private:
-    Dish stack [10];
-    int stack_size = 0;
+    Dish stack [MAX_SIZE];
+    int stack_size;
   
   public:
     DishStack()
     {
-      Dish
+      stack_size = -1;
+    }
+
+    bool isEmpty()
+    {
+        return (stack_size == -1);
+    }
+
+    bool isFull()
+    {
+        return (stack_size == MAX_SIZE);
     }
 
     int size()
     {
       return stack_size;
     }
-
+    
     void push(Dish store)
     {
       if (stack_size >= 10)
       {
-        cout << "Stack is full." << endl;
+        cout << "Stack is full. " << endl;
       }
 
       else
       {
         stack[stack_size] = store;
         stack_size++;
+        cout << "Pushed onto the stack." << endl;
       }
     }
 
-    void push(Dish store)
+    Dish pop()
+    {
+        if (stack_size == 0)
+        {
+            cout << "Stack is empty." << endl;
+        }
 
+        else
+        {
+            Dish poppedElement;
 
+            poppedElement = stack[stack_size -1 ];
+            stack_size--;
+            cout << "Popped from the stack." << endl;
+            return poppedElement;
+        }
+    }
 
-//push, peek,pop, 
+    Dish peek()
+    {
+        if (stack_size == 0)
+        {
+            cout << "Stack is empty." << endl;
+        }
 
+        else
+        {
+            Dish peekedElement;
 
-}
+            peekedElement = stack[stack_size];
+            return peekedElement;
+        }
+    }
+ 
+
+};
 
 
 int main()
